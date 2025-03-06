@@ -50,4 +50,9 @@ identity:
       url: file://etc/config/identity.schema.json
 dsn: ""
 log:
-  leak_sensitive_values: false 
+  leak_sensitive_values: false
+secrets:
+  cookie:
+    - ${SECRETS_COOKIE}
+  cipher:
+    - ${SECRETS_CIPHER} 
