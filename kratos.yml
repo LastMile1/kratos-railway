@@ -21,7 +21,7 @@ selfservice:
       ui_url: http://127.0.0.1:4455/error
     settings:
       ui_url: http://127.0.0.1:4455/settings
-      privilege_session_max_age: 15m
+      privileged_session_max_age: 15m
     recovery:
       enabled: true
       ui_url: http://127.0.0.1:4455/recovery
@@ -45,7 +45,7 @@ selfservice:
             - hook: session
 identity:
   default_schema_id: default
-  schema:
+  schemas:
     - id: default
       url: file://etc/config/identity.schema.json
 dsn: ""
