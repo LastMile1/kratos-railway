@@ -1,4 +1,4 @@
-FROM oryd/kratos
+FROM oryd/kratos:v1.0.0
 
 # Copy the configuration file
 COPY kratos.yml /etc/config/kratos.yml
@@ -7,10 +7,10 @@ COPY kratos.yml /etc/config/kratos.yml
 COPY identity.schema.json /etc/config/identity.schema.json
 
 # Create a shell script to run migrations and then start the server
-RUN echo '#!/bin/sh\n\
-kratos migrate sql -y --config /etc/config/kratos.yml\n\
-exec kratos serve --config /etc/config/kratos.yml\n\
-' > /run.sh && chmod +x /run.sh
+RUN echo '#!/bin/sh' > /run.sh && \
+    echo 'kratos migrate sql -y --config /etc/config/kratos.yml' >> /run.sh && \
+    echo 'exec kratos serve --config /etc/config/kratos.yml' >> /run.sh && \
+    chmod +x /run.sh
 
 # Set the entrypoint to the script
 ENTRYPOINT ["/run.sh"] 
