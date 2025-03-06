@@ -7,4 +7,4 @@ COPY kratos.yml /etc/config/kratos.yml
 COPY identity.schema.json /etc/config/identity.schema.json
 
 # Set the command to run migrations and then start the server
-CMD ["bash", "-c", "kratos migrate sql -y && kratos serve --config /etc/config/kratos.yml"] 
+CMD kratos migrate sql -y && kratos serve --config /etc/config/kratos.yml 
