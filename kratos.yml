@@ -1,0 +1,53 @@
+serve:
+  public:
+    base_url: http://kratos:4433/
+    host: 0.0.0.0
+    port: 4433
+    cors:
+      enabled: true
+  admin:
+    base_url: http://kratos:4434/
+    host: 0.0.0.0
+    port: 4434
+selfservice:
+  default_browser_return_url: http://127.0.0.1:4455/
+  allowed_return_urls:
+    - http://127.0.0.1:4455
+  methods:
+    password:
+      enabled: true
+  flows:
+    error:
+      ui_url: http://127.0.0.1:4455/error
+    settings:
+      ui_url: http://127.0.0.1:4455/settings
+      privilege_session_max_age: 15m
+    recovery:
+      enabled: true
+      ui_url: http://127.0.0.1:4455/recovery
+    verification:
+      enabled: true
+      ui_url: http://127.0.0.1:4455/verification
+      after:
+        default_browser_return_url: http://127.0.0.1:4455/
+    logout:
+      after:
+        default_browser_return_url: http://127.0.0.1:4455/login
+    login:
+      ui_url: http://127.0.0.1:4455/login
+      lifespan: 10m
+    registration:
+      lifespan: 10m
+      ui_url: http://127.0.0.1:4455/registration
+      after:
+        password:
+          hooks:
+            - hook: session
+identity:
+  default_schema_id: default
+  schema:
+    - id: default
+      url: file://etc/config/identity.schema.json
+dsn: ""
+log:
+  leak_sensitive_values: false 
